@@ -1,0 +1,6 @@
+.spacer {
+  flex: 1;
+}
+.button-container button {
+  margin: 0 8px; /* Aggiungi margine tra i bottoni, se necessario */
+}

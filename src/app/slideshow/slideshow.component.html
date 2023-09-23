@@ -1,0 +1,38 @@
+<div class="slideshow-container">
+  <div class="slideshow-banner">
+    <div class="hexagon-container">
+      <app-hexagon [imageUrl]="currentAwardImageUrl"></app-hexagon>
+    </div>
+    <div class="award-details">
+      <h2>{{ currentAwardTitle }}</h2>
+      <p>{{ currentAwardDescription }}</p>
+    </div>
+    <div class="button-container">
+      <button mat-icon-button class="prev-button" (click)="previousAward()">
+        <mat-icon>keyboard_arrow_left</mat-icon>
+      </button>
+      <button mat-icon-button class="next-button" (click)="nextAward()">
+        <mat-icon>keyboard_arrow_right</mat-icon>
+      </button>
+    </div>
+  </div>
+  <div class="user-select">
+    <div class="user-select">
+      <mat-form-field>
+        <mat-select placeholder="Seleziona un utente" [(ngModel)]="selectedUser">
+          <mat-option *ngFor="let user of users" [value]="user.name">
+            <div class="user-option">
+              <div class="user-image">
+                <img [src]="user.image" alt="{{ user.name }}">
+              </div>
+              {{ user.name }}
+            </div>
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="vote-button">
+    <button mat-raised-button color="primary" (click)="vote()">Vota</button>
+  </div>
+</div>

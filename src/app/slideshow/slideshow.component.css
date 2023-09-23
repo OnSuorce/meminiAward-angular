@@ -1,0 +1,71 @@
+.slideshow-container {
+  text-align: center;
+}
+
+.slideshow-banner {
+  background-color:#2d2d2d ;
+  color: #fff;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hexagon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+}
+
+.award-details {
+  margin: 10px 0;
+}
+.award-details h2 {
+  color: #673ab7;
+  font-weight: bold;
+}
+.next-button {
+  margin-top: 10px;
+}
+
+.user-select {
+  margin-top: 20px;
+}
+
+.vote-button {
+  margin-top: 20px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between; /* Allinea i pulsanti "Previous" e "Next" alla stessa riga */
+  width: 100%; /* Occupa tutta la larghezza del contenitore */
+   /* Sfondo viola */
+}
+
+.prev-button,
+.next-button {
+  color: #fff; /* Colore dell'icona dei pulsanti */
+  background-color: #673ab7;
+}
+
+.user-option {
+  display: flex;
+  align-items: center;
+}
+
+.user-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%; /* Crea una forma rotonda */
+  overflow: hidden; /* Nasconde eventuali parti dell'immagine al di fuori del bordo rotondo */
+  margin-right: 10px; /* Aggiunge spazio tra l'immagine e il nome */
+}
+
+.user-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Scala e ritaglia l'immagine in modo da riempire il bordo rotondo */
+}
+

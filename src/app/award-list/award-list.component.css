@@ -1,0 +1,24 @@
+.award-list-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.award-card {
+  width: 300px; /* Larghezza desiderata per una card */
+  margin: 16px; /* Margine tra le card */
+}
+
+.hexagon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.award-description {
+  margin-top: 12px; /* Aggiungi spazio sopra la descrizione */
+  margin-bottom: 12px; /* Aggiungi spazio sotto la descrizione */
+  color: #9a9a9a;
+}
+
+

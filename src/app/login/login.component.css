@@ -1,0 +1,15 @@
+.login-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 50vh; /* Imposta l'altezza a 100% della viewport */
+}
+
+form {
+  text-align: center;
+}
+
+.discord-logo {
+  margin-bottom: 5px;
+}

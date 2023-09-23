@@ -1,0 +1,32 @@
+<div class="create-award-container">
+  <mat-card>
+
+    <mat-card-content>
+      <div class="create-award-header">
+        <h2>Crea l'award</h2>
+      </div>
+      <div class="hexagon-container">
+
+        <app-hexagon [imageUrl]="awardImageUrl"></app-hexagon>
+
+      </div>
+      <form [formGroup]="awardForm" (submit)="onSubmit()">
+
+        <mat-form-field class="full-width">
+          <input matInput placeholder="Nome dell'award" formControlName="name" required>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <textarea matInput placeholder="Descrizione" formControlName="description" required></textarea>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <input matInput placeholder="URL dell'immagine" formControlName="imageUrl" [(ngModel)]="awardImageUrl" required>
+          <mat-error *ngIf="awardForm.get('imageUrl')?.hasError('invalidExtension')">
+            L'URL deve terminare con un'estensione di immagine valida (jpg, jpeg, png, gif).
+          </mat-error>
+        </mat-form-field>
+        <button mat-raised-button color="primary" type="submit">Conferma</button>
+
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

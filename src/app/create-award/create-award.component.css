@@ -1,0 +1,24 @@
+.create-award-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.hexagon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.create-award-header {
+  width: 100%;
+  background-color: #673ab7; /* Colore di sfondo desiderato */
+  color: #fff; /* Colore del testo */
+  text-align: center;
+  padding: 0px; /* Spaziatura interna */
+}
