@@ -22,6 +22,7 @@ import { SlideshowComponent } from './slideshow/slideshow.component';
 import {MatSelectModule} from "@angular/material/select";
 import {MatIconModule} from "@angular/material/icon";
 import { LoginComponent } from './login/login.component';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,6 +39,7 @@ import { LoginComponent } from './login/login.component';
     BrowserModule,
     MatInputModule,
     MatButtonModule,
+    HttpClientModule,
     MatTooltipModule,
     AppRoutingModule,
     BrowserAnimationsModule,
