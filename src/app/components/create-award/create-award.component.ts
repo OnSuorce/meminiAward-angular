@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {MeminiAwardApiService} from "../../services/memini-award-api.service";
+import {Award} from "../../models/Award";
 
 @Component({
   selector: 'app-create-award',
@@ -10,7 +12,7 @@ export class CreateAwardComponent implements OnInit {
   awardForm: FormGroup;
   awardImageUrl: string = ''; // Inizializza con un URL predefinito per <app-hexagon>
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private meminiApi: MeminiAwardApiService) {
     this.awardForm = this.fb.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
@@ -25,6 +27,13 @@ export class CreateAwardComponent implements OnInit {
     if (this.awardForm.valid) {
       // Invia i dati del form al tuo servizio o gestiscili come desideri
       console.log(this.awardForm.value);
+
+      // @ts-ignore
+      let award: Award = {title: this.awardForm.value.name, description: this.awardForm.value.description, image_url: this.awardForm.value.imageUrl }
+
+      this.meminiApi.postAward(award).subscribe({
+
+      })
     }
   }
 

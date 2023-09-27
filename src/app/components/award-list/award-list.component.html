@@ -2,13 +2,13 @@
   <mat-card class="award-card" *ngFor="let award of awards">
     <mat-card-header>
       <mat-card-title>
-        <span>{{ award.name }}</span>
+        <span>{{ award.title }}</span>
 
       </mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <div class="hexagon-container">
-        <app-hexagon [imageUrl]="award.imageUrl"></app-hexagon>
+        <app-hexagon [imageUrl]="award.image_url"></app-hexagon>
       </div>
       <p class="award-description" [matTooltip]="award.description">{{truncateDescription(award.description)}}</p>
 
@@ -16,6 +16,6 @@
     <mat-card-actions style="margin: auto 0 0;">
       <button style="width: 100%;" mat-flat-button color="primary">Vote!</button>
     </mat-card-actions>
-    <p style="text-align: center; color: #673ab7">{{ award.creatorName }}</p>
+    <p style="text-align: center; color: #673ab7">{{ award.creator }}</p>
   </mat-card>
 </div>

@@ -1,4 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {Award} from "../../models/Award";
+import {MeminiAwardApiService} from "../../services/memini-award-api.service";
 
 @Component({
   selector: 'app-slideshow',
@@ -7,7 +9,7 @@ import {Component, OnInit} from '@angular/core';
 })
 export class SlideshowComponent implements OnInit {
   currentAwardIndex: number = 0;
-  awards: any[] = []; // Inserisci qui la lista degli award
+  awards: Award[] = [];
 
   selectedUser: string = '';
   currentAwardTitle: any;
@@ -18,26 +20,30 @@ export class SlideshowComponent implements OnInit {
     { name: 'Utente 2', image: 'url-immagine-2' },
     // Aggiungi altri utenti
   ];
-  constructor() { }
+  constructor(private  meminiApi: MeminiAwardApiService, private cdRef: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     // Inizializza la lista degli award e degli utenti
-    this.awards = [
-      { title: 'Award 1', description: 'Descrizione dell\'Award 1', imageUrl: 'https://media.tenor.com/78T_NTBNlskAAAAC/steve-carell-the-office.gif' },
-      { title: 'Award 2', description: 'Descrizione dell\'Award 2', imageUrl: 'url-immagine-2' },
-      // Aggiungi altri award
-    ];
+    this.meminiApi.getAwards().subscribe({
 
+      next: value => {
+        this.awards = value
+        console.log(value)
+        this.cdRef.detectChanges()
+      }
+    })
+
+    console.log(this.awards)
 
     this.loadCurrentAward();
   }
 
   loadCurrentAward() {
     if (this.currentAwardIndex < this.awards.length) {
-      const currentAward = this.awards[this.currentAwardIndex];
+      const currentAward: Award = this.awards[this.currentAwardIndex];
       this.currentAwardTitle = currentAward.title;
       this.currentAwardDescription = currentAward.description;
-      this.currentAwardImageUrl = currentAward.imageUrl;
+      this.currentAwardImageUrl = currentAward.image_url;
     }
   }
 

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-import {MeminiAwardApiService} from "../services/memini-award-api.service";
+import {MeminiAwardApiService} from "../../services/memini-award-api.service";
+import {PlatformLocation} from "@angular/common";
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-login',
@@ -9,7 +11,7 @@ import {MeminiAwardApiService} from "../services/memini-award-api.service";
 })
 export class LoginComponent {
 
-  constructor(private route: ActivatedRoute, private meminiApi: MeminiAwardApiService) { }
+  constructor(private route: ActivatedRoute, private meminiApi: MeminiAwardApiService, private authService: AuthService) { }
 
   ngOnInit(): void {
     // Controlla se il parametro "code" è presente nell'URL
@@ -19,9 +21,14 @@ export class LoginComponent {
       if (code) {
         // Il parametro "code" è presente nell'URL
         // Puoi procedere con la gestione del parametro "code" qui
-        console.log('Parametro "code" presente:', code);
-        this.meminiApi.inviaAccessToken(code).subscribe({
-          next: (v) => console.log(v),
+
+
+        this.meminiApi.sendDiscordCode(code, window.location.origin).subscribe({
+          next: (v) => {
+            console.log(v)
+            this.authService.setToken(v["jwt_token"])
+            window.location.reload()
+          },
           error: (e) => console.error(e),
           })
 

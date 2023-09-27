@@ -1,0 +1,26 @@
+<mat-toolbar color="primary">
+  <span>Memini Awards</span>
+  <span class="spacer"></span>
+  <div class="button-container">
+    <button mat-button routerLink="vote">Vote</button>
+
+    <!-- Pulsante di menu Awards -->
+    <mat-menu #awardsMenu="matMenu">
+      <button mat-menu-item routerLink="award-list">List</button>
+      <button mat-menu-item routerLink="award-create">Create</button>
+    </mat-menu>
+
+    <button mat-button [matMenuTriggerFor]="awardsMenu">Awards</button>
+
+    <button mat-button routerLink="result-page">Results</button>
+  </div>
+  <span class="spacer"></span>
+  <img class="rounded-image" [src]="userImageUrl" alt="User Avatar" width="40" height="40" />
+
+  <span [matMenuTriggerFor]="logout">{{ userName }}</span>
+
+  <mat-menu #logout="matMenu">
+    <button mat-menu-item routerLink="logout">Logout</button>
+  </mat-menu>
+</mat-toolbar>
+
