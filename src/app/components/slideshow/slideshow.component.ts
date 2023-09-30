@@ -1,6 +1,8 @@
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {Award} from "../../models/Award";
 import {MeminiAwardApiService} from "../../services/memini-award-api.service";
+import {User} from "../../models/user";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-slideshow',
@@ -15,12 +17,8 @@ export class SlideshowComponent implements OnInit {
   currentAwardTitle: any;
   currentAwardDescription: any;
   currentAwardImageUrl: any;
-  users: any[] = [
-    { name: 'Utente 1', image: 'https://images.corsidia.com/ckeditor/pictures/data/000/000/086/content/immagini-e-tabelle-html-00.jpg' },
-    { name: 'Utente 2', image: 'url-immagine-2' },
-    // Aggiungi altri utenti
-  ];
-  constructor(private  meminiApi: MeminiAwardApiService, private cdRef: ChangeDetectorRef) { }
+  users: User[] = [];
+  constructor(private  meminiApi: MeminiAwardApiService, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     // Inizializza la lista degli award e degli utenti
@@ -29,13 +27,22 @@ export class SlideshowComponent implements OnInit {
       next: value => {
         this.awards = value
         console.log(value)
-        this.cdRef.detectChanges()
-      }
+        this.loadCurrentAward();
+      },
+      error: err => console.error(err),
+      complete: () => {}
     })
 
-    console.log(this.awards)
+    this.meminiApi.getUsers().subscribe({
+      next: value => {
+        this.users = value;
+      }
 
-    this.loadCurrentAward();
+    })
+
+
+
+
   }
 
   loadCurrentAward() {
@@ -60,8 +67,18 @@ export class SlideshowComponent implements OnInit {
     }
   }
   vote() {
-    // Aggiungi la logica per il voto qui
-    console.log(`Hai votato ${this.currentAwardTitle} per ${this.selectedUser}`);
-    this.nextAward(); // Passa all'award successivo dopo il voto
+
+
+    this.snackBar.open(`Hai votato ${this.selectedUser} per ${this.currentAwardTitle}`, "Close", {
+      duration: 3000, // Duration in milliseconds (e.g., 3000 = 3 seconds)
+    });
+    this.meminiApi.postVote({
+      user_voted: this.selectedUser,
+      award_id: this.awards[this.currentAwardIndex].id,
+      user_voting: " " //api
+    }).subscribe({
+      complete: () =>   this.nextAward()
+    })
+
   }
 }

@@ -24,6 +24,7 @@ import {MatIconModule} from "@angular/material/icon";
 import { LoginComponent } from './components/login/login.component';
 import {HttpClientModule, HttpClient, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {ForbiddenInterceptorInterceptor} from "./interceptor/forbidden-interceptor.interceptor";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,6 +51,7 @@ import {ForbiddenInterceptorInterceptor} from "./interceptor/forbidden-intercept
     MatButtonToggleModule,
     ReactiveFormsModule,
     MatSelectModule,
+    MatSnackBarModule,
     MatIconModule,
     FormsModule
   ],

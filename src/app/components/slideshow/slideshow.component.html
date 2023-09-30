@@ -20,12 +20,12 @@
     <div class="user-select">
       <mat-form-field>
         <mat-select placeholder="Seleziona un utente" [(ngModel)]="selectedUser">
-          <mat-option *ngFor="let user of users" [value]="user.name">
+          <mat-option *ngFor="let user of users" [value]="user.username">
             <div class="user-option">
               <div class="user-image">
-                <img [src]="user.image" alt="{{ user.name }}">
+                <img [src]="user.avatar_url" >
               </div>
-              {{ user.name }}
+              {{ user.username }} - {{ user.global_name }}
             </div>
           </mat-option>
         </mat-select>

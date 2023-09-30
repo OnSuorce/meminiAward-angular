@@ -20,7 +20,7 @@
   <span [matMenuTriggerFor]="logout">{{ userName }}</span>
 
   <mat-menu #logout="matMenu">
-    <button mat-menu-item routerLink="logout">Logout</button>
+    <button mat-menu-item (click)="logoutF()">Logout</button>
   </mat-menu>
 </mat-toolbar>
 

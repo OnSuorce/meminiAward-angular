@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../../services/auth.service";
 import {MeminiAwardApiService} from "../../services/memini-award-api.service";
 import {User} from "../../models/user";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-navbar',
@@ -23,6 +24,12 @@ export class NavbarComponent implements OnInit {
 
       },
       error: (e) => console.error(e),
+
     })
+  }
+
+  logoutF(){
+    this.authService.flush();
+    window.location.reload();
   }
 }

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {MeminiAwardApiService} from "../../services/memini-award-api.service";
-import {PlatformLocation} from "@angular/common";
 import {AuthService} from "../../services/auth.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-login',
@@ -11,7 +11,10 @@ import {AuthService} from "../../services/auth.service";
 })
 export class LoginComponent {
 
-  constructor(private route: ActivatedRoute, private meminiApi: MeminiAwardApiService, private authService: AuthService) { }
+  constructor(private route: ActivatedRoute,
+              private meminiApi: MeminiAwardApiService,
+              private authService: AuthService,
+              private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     // Controlla se il parametro "code" è presente nell'URL
@@ -35,6 +38,12 @@ export class LoginComponent {
       } else {
         // Il parametro "code" non è presente nell'URL
         console.log('Parametro "code" non presente nell\'URL');
+
+        if(this.authService.isAuthenticated()){
+          this.snackBar.open("You are logged in", "Close", {
+            duration: 3000, // Duration in milliseconds (e.g., 3000 = 3 seconds)
+          });
+        }
       }
     });
   }

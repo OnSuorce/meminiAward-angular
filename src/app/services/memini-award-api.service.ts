@@ -5,6 +5,7 @@ import {AuthService} from "./auth.service";
 import {User} from "../models/user";
 import {Award} from "../models/Award";
 import {environment} from "../environment";
+import {Vote} from "../models/Vote";
 
 @Injectable({
   providedIn: 'root'
@@ -52,8 +53,25 @@ export class MeminiAwardApiService {
     return this.http.get<Award[]>(this.apiUrl+"/award",{headers} )
   }
 
-  public postAward(award: Award): Observable<Award>{
+  public postAward(award: Award): Observable<any>{
     const headers = this.getHeaders(true);
     return this.http.post<any>(this.apiUrl+"/award", award, {headers})
+  }
+
+  public postVote(vote: Vote):  Observable<any>{
+    const headers = this.getHeaders(true);
+    return this.http.post<any>(this.apiUrl+"/vote", vote, {headers})
+  }
+
+  public getVotes():  Observable<Vote[]>{
+    const headers = this.getHeaders(true);
+    return this.http.get<any>(this.apiUrl+"/vote", {headers})
+  }
+
+  public getUsers(): Observable<User[]>{
+
+    const headers = this.getHeaders(true);
+    return this.http.get<any>(this.apiUrl+"/users/", {headers})
+
   }
 }
