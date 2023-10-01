@@ -3,6 +3,7 @@ import {ActivatedRoute} from "@angular/router";
 import {MeminiAwardApiService} from "../../services/memini-award-api.service";
 import {AuthService} from "../../services/auth.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {environment} from "../../environment";
 
 @Component({
   selector: 'app-login',
@@ -26,7 +27,7 @@ export class LoginComponent {
         // Puoi procedere con la gestione del parametro "code" qui
 
 
-        this.meminiApi.sendDiscordCode(code, window.location.origin).subscribe({
+        this.meminiApi.sendDiscordCode(code, environment.redirect_uri).subscribe({
           next: (v) => {
             console.log(v)
             this.authService.setToken(v["jwt_token"])
