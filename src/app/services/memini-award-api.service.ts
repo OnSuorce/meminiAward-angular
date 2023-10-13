@@ -4,7 +4,7 @@ import {Observable} from "rxjs";
 import {AuthService} from "./auth.service";
 import {User} from "../models/user";
 import {Award} from "../models/Award";
-import {environment} from "../../environments/environment";
+import {environmentDevelopment} from "../../environments/environment.development";
 import {Vote} from "../models/Vote";
 
 @Injectable({
@@ -12,7 +12,7 @@ import {Vote} from "../models/Vote";
 })
 export class MeminiAwardApiService {
 
-  private apiUrl = environment.apiUrl; // Sostituisci con l'URL effettivo
+  private apiUrl = environmentDevelopment.apiUrl; // Sostituisci con l'URL effettivo
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 
