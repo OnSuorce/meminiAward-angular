@@ -21,7 +21,7 @@ export class ForbiddenInterceptorInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
-        if (error.status === 403) {
+        if (error.status === 403 && !this.router.url.endsWith('login')) {
 
           this.router.navigate(['login']);
         }

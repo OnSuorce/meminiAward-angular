@@ -22,6 +22,7 @@ export class CreateAwardComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.meminiApi.isAuthenticated()
   }
 
   onSubmit() {

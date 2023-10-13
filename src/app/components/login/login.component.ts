@@ -20,12 +20,14 @@ export class LoginComponent {
   ngOnInit(): void {
     // Controlla se il parametro "code" è presente nell'URL
     this.route.queryParams.subscribe(params => {
+      if(this.meminiApi.isAuthenticated()){
+        this.snackBar.open("You are logged in", "Close", {
+          duration: 3000, // Duration in milliseconds (e.g., 3000 = 3 seconds)
+        });
+      }
       const code = params['code'];
 
       if (code) {
-        // Il parametro "code" è presente nell'URL
-        // Puoi procedere con la gestione del parametro "code" qui
-
 
         this.meminiApi.sendDiscordCode(code, environment.redirect_uri).subscribe({
           next: (v) => {
@@ -37,14 +39,7 @@ export class LoginComponent {
           })
 
       } else {
-        // Il parametro "code" non è presente nell'URL
-        console.log('Parametro "code" non presente nell\'URL');
 
-        if(this.meminiApi.isAuthenticated()){
-          this.snackBar.open("You are logged in", "Close", {
-            duration: 3000, // Duration in milliseconds (e.g., 3000 = 3 seconds)
-          });
-        }
       }
     });
   }
