@@ -3,7 +3,7 @@ import {ActivatedRoute} from "@angular/router";
 import {MeminiAwardApiService} from "../../services/memini-award-api.service";
 import {AuthService} from "../../services/auth.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {environment} from "../../environment";
+import {environment} from "../../../environments/environment";
 
 @Component({
   selector: 'app-login',
