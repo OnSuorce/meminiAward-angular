@@ -18,7 +18,7 @@ export class MeminiAwardApiService {
 
   private getHeaders(auth: boolean): HttpHeaders{
 
-    if(auth && this.authService.isAuthenticated()){
+    if(auth && this.authService.isTokenPresent()){
       return new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization' : "Bearer "+this.authService.getToken()// Tipo di contenuto JSON
@@ -73,5 +73,18 @@ export class MeminiAwardApiService {
     const headers = this.getHeaders(true);
     return this.http.get<any>(this.apiUrl+"/users/", {headers})
 
+  }
+
+  isAuthenticated(): boolean {
+    var authenticated: boolean = false;
+    if(!!this.authService.getToken()){
+
+      this.getUserInformation().subscribe({
+        complete: () => authenticated = true,
+        error: () => authenticated = false
+      })
+    }
+
+    return authenticated;
   }
 }

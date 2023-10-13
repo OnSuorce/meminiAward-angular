@@ -40,7 +40,7 @@ export class LoginComponent {
         // Il parametro "code" non è presente nell'URL
         console.log('Parametro "code" non presente nell\'URL');
 
-        if(this.authService.isAuthenticated()){
+        if(this.meminiApi.isAuthenticated()){
           this.snackBar.open("You are logged in", "Close", {
             duration: 3000, // Duration in milliseconds (e.g., 3000 = 3 seconds)
           });
@@ -49,6 +49,6 @@ export class LoginComponent {
     });
   }
   loginWithDiscord() {
-  window.location.href = 'https://discord.com/api/oauth2/authorize?client_id=1155291213142949918&redirect_uri=https%3A%2F%2Fmeminiaward.mb-dev.it%2Flogin&response_type=code&scope=identify%20guilds%20guilds.members.read'
+  window.location.href = environment.discord_auth_url
   }
 }
