@@ -3,7 +3,7 @@ import {ActivatedRoute} from "@angular/router";
 import {MeminiAwardApiService} from "../../services/memini-award-api.service";
 import {AuthService} from "../../services/auth.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {environmentDevelopment} from "../../../environments/environment.development";
+import {environment} from "../../../environments/environment.development";
 
 @Component({
   selector: 'app-login',
@@ -29,7 +29,7 @@ export class LoginComponent {
 
       if (code) {
 
-        this.meminiApi.sendDiscordCode(code, environmentDevelopment.redirect_uri).subscribe({
+        this.meminiApi.sendDiscordCode(code, environment.redirect_uri).subscribe({
           next: (v) => {
             console.log(v)
             this.authService.setToken(v["jwt_token"])
@@ -44,6 +44,6 @@ export class LoginComponent {
     });
   }
   loginWithDiscord() {
-  window.location.href = environmentDevelopment.discord_auth_url
+  window.location.href = environment.discord_auth_url
   }
 }
