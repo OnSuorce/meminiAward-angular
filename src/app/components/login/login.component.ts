@@ -3,7 +3,7 @@ import {ActivatedRoute} from "@angular/router";
 import {MeminiAwardApiService} from "../../services/memini-award-api.service";
 import {AuthService} from "../../services/auth.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {environment} from "../../../environments/environment.development";
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -20,6 +20,9 @@ export class LoginComponent {
   ngOnInit(): void {
     // Controlla se il parametro "code" è presente nell'URL
     this.route.queryParams.subscribe(params => {
+
+      console.log(environment.production)
+
       if(this.meminiApi.isAuthenticated()){
         this.snackBar.open("You are logged in", "Close", {
           duration: 3000, // Duration in milliseconds (e.g., 3000 = 3 seconds)

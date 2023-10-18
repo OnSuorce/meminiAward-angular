@@ -4,7 +4,7 @@ import {Observable} from "rxjs";
 import {AuthService} from "./auth.service";
 import {User} from "../models/user";
 import {Award} from "../models/Award";
-import {environment} from "../../environments/environment.development";
+import { environment } from 'src/environments/environment';
 import {Vote} from "../models/Vote";
 
 @Injectable({
